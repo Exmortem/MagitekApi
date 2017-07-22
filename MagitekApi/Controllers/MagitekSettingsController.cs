@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
@@ -128,6 +129,8 @@ namespace MagitekApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] MagitekSettings settings)
         {
+            Console.WriteLine($"New Settings [{settings.Job}] [{settings.Name}] From [{settings.Author}]");
+
             using (var context = MagitekContextFactory.Create())
             {
                 await context.AddAsync(settings);
