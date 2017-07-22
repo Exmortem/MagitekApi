@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
@@ -48,12 +46,28 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
+        [Route("{rating")]
+        public async Task<IActionResult> GetByRating(int rating)
+        {
+            List<MagitekSettings> magitekSettingsList;
+
+            using (var context = MagitekContextFactory.Create())
+            {
+                magitekSettingsList = await context.MagitekSettings.Where(r => r.Rating >= rating).ToListAsync();
+            }
+
+            if (!magitekSettingsList.Any())
+            {
+                return new BadRequestResult();
+            }
+
+            return new OkObjectResult(magitekSettingsList);
+        }
+
+        [HttpGet]
         [Route("job/{job}")]
         public async Task<IActionResult> GetByJob(string job)
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-
             List<MagitekSettings> magitekSettingsList;
 
             using (var context = MagitekContextFactory.Create())
@@ -61,28 +75,67 @@ namespace MagitekApi.Controllers
                 magitekSettingsList = await context.MagitekSettings.Where(r => r.Job == job).ToListAsync();
             }
 
-            stopWatch.Stop();
-            Console.WriteLine($"Retrieved in {stopWatch.ElapsedMilliseconds} Milliseconds");
+            if (!magitekSettingsList.Any())
+            {
+                return new BadRequestResult();
+            }
+
+            return new OkObjectResult(magitekSettingsList);
+        }
+
+        [HttpGet]
+        [Route("job/{job}/{rating}")]
+        public async Task<IActionResult> GetByJobAndRating(string job, int rating)
+        {
+            List<MagitekSettings> magitekSettingsList;
+
+            using (var context = MagitekContextFactory.Create())
+            {
+                magitekSettingsList = await context.MagitekSettings.Where(r => r.Job == job && r.Rating >= rating).ToListAsync();
+            }
+
+            if (!magitekSettingsList.Any())
+            {
+                return new BadRequestResult();
+            }
 
             return new OkObjectResult(magitekSettingsList);
         }
 
         [HttpGet]
         [Route("author/{author}")]
-        public IActionResult GetByAuthor(string author)
+        public async Task<IActionResult> GetByAuthor(string author)
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-
             List<MagitekSettings> magitekSettingsList;
 
             using (var context = MagitekContextFactory.Create())
             {
-                magitekSettingsList = context.MagitekSettings.Where(r => r.Author == author).ToList();
+                magitekSettingsList = await context.MagitekSettings.Where(r => r.Author == author).ToListAsync();
             }
 
-            stopWatch.Stop();
-            Console.WriteLine($"Retrieved in {stopWatch.ElapsedMilliseconds} Milliseconds");
+            if (!magitekSettingsList.Any())
+            {
+                return new BadRequestResult();
+            }
+
+            return new OkObjectResult(magitekSettingsList);
+        }
+
+        [HttpGet]
+        [Route("author/{author}/{rating}")]
+        public async Task<IActionResult> GetByAuthorAndRating(string author, int rating)
+        {
+            List<MagitekSettings> magitekSettingsList;
+
+            using (var context = MagitekContextFactory.Create())
+            {
+                magitekSettingsList = await context.MagitekSettings.Where(r => r.Author == author && r.Rating >= rating).ToListAsync();
+            }
+
+            if (!magitekSettingsList.Any())
+            {
+                return new BadRequestResult();
+            }
 
             return new OkObjectResult(magitekSettingsList);
         }
