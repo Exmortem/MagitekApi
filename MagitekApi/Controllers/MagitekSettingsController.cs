@@ -12,11 +12,6 @@ namespace MagitekApi.Controllers
     [Route("/api/[controller]")]
     public class MagitekSettingsController : Controller
     {
-        public IQueryable<MagitekSettings> GetAllSettings()
-        {
-            return ControllerCon
-        }
-
         #region GET
 
         [HttpGet]
