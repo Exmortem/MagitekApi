@@ -46,25 +46,6 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
-        [Route("{rating}")]
-        public async Task<IActionResult> GetByRating(int rating)
-        {
-            List<MagitekSettings> magitekSettingsList;
-
-            using (var context = MagitekContextFactory.Create())
-            {
-                magitekSettingsList = await context.MagitekSettings.Where(r => r.Rating >= rating).ToListAsync();
-            }
-
-            if (!magitekSettingsList.Any())
-            {
-                return new BadRequestResult();
-            }
-
-            return new OkObjectResult(magitekSettingsList);
-        }
-
-        [HttpGet]
         [Route("job/{job}")]
         public async Task<IActionResult> GetByJob(string job)
         {
