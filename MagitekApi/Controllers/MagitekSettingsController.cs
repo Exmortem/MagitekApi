@@ -59,7 +59,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
+                return new ObjectResult(new List<MagitekSettings>());
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -78,7 +78,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
+                return new ObjectResult(new List<MagitekSettings>());
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -97,7 +97,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
+                return new ObjectResult(new List<MagitekSettings>());
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -116,7 +116,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
+                return new ObjectResult(new List<MagitekSettings>());
             }
 
             return new OkObjectResult(magitekSettingsList);
