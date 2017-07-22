@@ -9,6 +9,10 @@ namespace MagitekApi.Database
         public MagitekContext(DbContextOptions option) : base(option) { }
 
         public DbSet<MagitekSettings> MagitekSettings { get; set; }
+        public DbSet<AstrologianSettings> AstrologianSettings { get; set; }
+        public DbSet<ScholarSettings> ScholarSettings { get; set; }
+        public DbSet<WhiteMageSettings> WhiteMageSettings { get; set; }
+        public DbSet<PaladinSettings> PaladinSettings { get; set; }
     }
 
     public static class MagitekContextFactory
