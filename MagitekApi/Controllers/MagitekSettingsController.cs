@@ -12,6 +12,11 @@ namespace MagitekApi.Controllers
     [Route("/api/[controller]")]
     public class MagitekSettingsController : Controller
     {
+        public IQueryable<MagitekSettings> GetAllSettings()
+        {
+            return ControllerCon
+        }
+
         #region GET
 
         [HttpGet]
@@ -48,21 +53,16 @@ namespace MagitekApi.Controllers
 
         [HttpGet]
         [Route("{job}")]
-        public async Task<IActionResult> GetByJob(string job)
+        public IActionResult GetByJob(string job)
         {
-            MagitekSettings settings;
+            List<MagitekSettings> magitekSettingsList;
 
             using (var context = MagitekContextFactory.Create())
             {
-                settings = await context.MagitekSettings.FirstOrDefaultAsync(r => string.Equals(r.Job, job, StringComparison.CurrentCultureIgnoreCase));
+                magitekSettingsList = context.MagitekSettings.Where(r => r.Job == job).ToList();
             }
 
-            if (settings == null)
-            {
-                return new BadRequestResult();
-            }
-
-            return new OkObjectResult(settings);
+            return new OkObjectResult(magitekSettingsList);
         }
 
         [HttpGet]
