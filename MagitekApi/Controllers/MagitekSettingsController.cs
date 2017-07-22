@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MagitekApi.Database;
 using MagitekApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace MagitekApi.Controllers
     public class MagitekSettingsController : Controller
     {
         [HttpGet]
-        public IActionResult GetAllSettings()
+        public IActionResult GetAll()
         {
             List<MagitekSettings> magitekSettingsList;
 
@@ -20,6 +21,17 @@ namespace MagitekApi.Controllers
             }
 
             return new OkObjectResult(magitekSettingsList);
+        }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> Add([FromBody] MagitekSettings settings)
+        {
+            using (var context = MagitekContextFactory.Create())
+            {
+                await context.MagitekSettings.AddAsync(settings);
+            }
+
+            return new OkResult();
         }
     }
 }
