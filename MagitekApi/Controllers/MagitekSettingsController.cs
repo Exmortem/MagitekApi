@@ -27,7 +27,7 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
-        [Route("/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             MagitekSettings settings;
