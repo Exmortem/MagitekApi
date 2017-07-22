@@ -1,5 +1,8 @@
-﻿namespace MagitekApi.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MagitekApi.Models
 {
+    [Table("MagitekSettings")]
     public class MagitekSettings
     {
         public int Id { get; set; }

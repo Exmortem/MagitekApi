@@ -1,5 +1,8 @@
-﻿namespace MagitekApi.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MagitekApi.Models
 {
+    [Table("WhiteMageSettings")]
     public class WhiteMageSettings : MagitekSettings
     {  
         public bool PrioritizeTankBusters { get; set; }

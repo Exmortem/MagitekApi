@@ -1,7 +1,9 @@
-﻿using MagitekApi.Enumerations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using MagitekApi.Enumerations;
 
 namespace MagitekApi.Models
 {
+    [Table("ScholarSettings")]
     public class ScholarSettings : MagitekSettings
     {   
         public bool PrioritizeTankBusters { get; set; } 

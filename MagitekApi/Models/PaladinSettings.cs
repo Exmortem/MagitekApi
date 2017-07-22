@@ -1,5 +1,8 @@
-﻿namespace MagitekApi.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MagitekApi.Models
 {
+    [Table("PaladinSettings")]
     public class PaladinSettings : MagitekSettings
     {
         public float RestHealthPercent { get; set; }
