@@ -66,7 +66,7 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
-        [Route("{job}")]
+        [Route("{author}")]
         public async Task<IActionResult> GetByAuthor(string author)
         {
             MagitekSettings settings;
