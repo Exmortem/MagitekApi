@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
@@ -35,6 +36,44 @@ namespace MagitekApi.Controllers
             using (var context = MagitekContextFactory.Create())
             {
                 settings = await context.MagitekSettings.FirstOrDefaultAsync(r => r.Id == id);
+            }
+
+            if (settings == null)
+            {
+                return new BadRequestResult();
+            }
+
+            return new OkObjectResult(settings);
+        }
+
+        [HttpGet]
+        [Route("{job}")]
+        public async Task<IActionResult> GetByJob(string job)
+        {
+            MagitekSettings settings;
+
+            using (var context = MagitekContextFactory.Create())
+            {
+                settings = await context.MagitekSettings.FirstOrDefaultAsync(r => string.Equals(r.Job, job, StringComparison.CurrentCultureIgnoreCase));
+            }
+
+            if (settings == null)
+            {
+                return new BadRequestResult();
+            }
+
+            return new OkObjectResult(settings);
+        }
+
+        [HttpGet]
+        [Route("{job}")]
+        public async Task<IActionResult> GetByAuthor(string author)
+        {
+            MagitekSettings settings;
+
+            using (var context = MagitekContextFactory.Create())
+            {
+                settings = await context.MagitekSettings.FirstOrDefaultAsync(r => string.Equals(r.Author, author, StringComparison.CurrentCultureIgnoreCase));
             }
 
             if (settings == null)
