@@ -46,7 +46,7 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
-        [Route("{rating")]
+        [Route("{rating}")]
         public async Task<IActionResult> GetByRating(int rating)
         {
             List<MagitekSettings> magitekSettingsList;
