@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using MagitekApi.Database;
-using MagitekApi.Models;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace MagitekApi
@@ -10,22 +7,6 @@ namespace MagitekApi
     {
         public static void Main(string[] args)
         {
-            //var entry = new MagitekSettings() { Author = "Exmortem", Job = "Scholar", Name = "Exmortem's Great Scholar Routine" };
-
-            //using (var context = MagitekContextFactory.Create())
-            //{
-            //    context.Add(entry);
-            //    context.SaveChanges();
-            //}
-
-            var newScholarSettings = new ScholarSettings() { Author = "Exmortem", Job = "Scholar", Name = "The best"};
-
-            using (var context = MagitekContextFactory.Create())
-            {
-                context.Add(newScholarSettings);
-                context.SaveChanges();
-            }
-
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

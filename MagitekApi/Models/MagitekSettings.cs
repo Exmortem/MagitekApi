@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MagitekApi.Models
 {
-    [Table("MagitekSettings")]
     public class MagitekSettings
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public string Job { get; set; }
+        public string File { get; set; }
     }
 }
