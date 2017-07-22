@@ -28,8 +28,8 @@ namespace MagitekApi.Controllers
         {
             using (var context = MagitekContextFactory.Create())
             {
-                var result = await context.MagitekSettings.AddAsync(settings);
-                return new ObjectResult(result);
+                await context.MagitekSettings.AddAsync(settings);
+                return Ok();
             }
         }
     }
