@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
@@ -47,9 +48,12 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
-        [Route("{job}")]
+        [Route("job/{job}")]
         public IActionResult GetByJob(string job)
         {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
             List<MagitekSettings> magitekSettingsList;
 
             using (var context = MagitekContextFactory.Create())
@@ -57,26 +61,30 @@ namespace MagitekApi.Controllers
                 magitekSettingsList = context.MagitekSettings.Where(r => r.Job == job).ToList();
             }
 
+            stopWatch.Stop();
+            Console.WriteLine($"Retrieved in {stopWatch.ElapsedMilliseconds} Milliseconds");
+
             return new OkObjectResult(magitekSettingsList);
         }
 
         [HttpGet]
-        [Route("{author}")]
-        public async Task<IActionResult> GetByAuthor(string author)
+        [Route("author/{author}")]
+        public IActionResult GetByAuthor(string author)
         {
-            MagitekSettings settings;
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            List<MagitekSettings> magitekSettingsList;
 
             using (var context = MagitekContextFactory.Create())
             {
-                settings = await context.MagitekSettings.FirstOrDefaultAsync(r => string.Equals(r.Author, author, StringComparison.CurrentCultureIgnoreCase));
+                magitekSettingsList = context.MagitekSettings.Where(r => r.Author == author).ToList();
             }
 
-            if (settings == null)
-            {
-                return new BadRequestResult();
-            }
+            stopWatch.Stop();
+            Console.WriteLine($"Retrieved in {stopWatch.ElapsedMilliseconds} Milliseconds");
 
-            return new OkObjectResult(settings);
+            return new OkObjectResult(magitekSettingsList);
         }
 
         #endregion  
