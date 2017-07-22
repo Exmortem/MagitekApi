@@ -24,11 +24,11 @@ namespace MagitekApi.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add([FromBody] MagitekSettings settings)
+        public async Task<IActionResult> Add([FromBody] MagitekSettings settings)
         {
             using (var context = MagitekContextFactory.Create())
             {
-                var result = context.MagitekSettings.AddAsync(settings).Result;
+                var result = await context.MagitekSettings.AddAsync(settings);
                 return new ObjectResult(result);
             }
         }
