@@ -40,7 +40,7 @@ namespace MagitekApi.Controllers
 
             if (settings == null)
             {
-                return new BadRequestResult();
+                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = $"No Settings Of Id: {id}" });
             }
 
             return new OkObjectResult(settings);
@@ -59,7 +59,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new BadRequestResult();
+                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -78,7 +78,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new BadRequestResult();
+                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -97,7 +97,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new BadRequestResult();
+                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -116,7 +116,7 @@ namespace MagitekApi.Controllers
 
             if (!magitekSettingsList.Any())
             {
-                return new BadRequestResult();
+                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "No Settings Available" });
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -129,15 +129,20 @@ namespace MagitekApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] MagitekSettings settings)
         {
-            Console.WriteLine($"New Settings [{settings.Job}] [{settings.Name}] From [{settings.Author}]");
-
             using (var context = MagitekContextFactory.Create())
             {
+                if (await context.MagitekSettings.AnyAsync(r => r.Job == settings.Job && r.Name == settings.Name))
+                {
+                    return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "Failure: Duplicate Settings"});
+                }
+
+                Console.WriteLine($"New Settings [{settings.Job}] [{settings.Name}] From [{settings.Author}]");
+
                 await context.AddAsync(settings);
                 await context.SaveChangesAsync();
             }
 
-            return Ok();
+            return new ObjectResult(new MagitekApiResult() { Name = "Success", Description = $"Success: Added New {settings.Job} Settings"});
         }
 
         #endregion

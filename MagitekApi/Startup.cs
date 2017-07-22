@@ -40,7 +40,7 @@ namespace MagitekApi
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/MagitekApiResult");
             }
 
             app.UseStaticFiles();
