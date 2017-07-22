@@ -49,7 +49,7 @@ namespace MagitekApi.Controllers
 
         [HttpGet]
         [Route("job/{job}")]
-        public IActionResult GetByJob(string job)
+        public async Task<IActionResult> GetByJob(string job)
         {
             var stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -58,7 +58,7 @@ namespace MagitekApi.Controllers
 
             using (var context = MagitekContextFactory.Create())
             {
-                magitekSettingsList = context.MagitekSettings.Where(r => r.Job == job).ToList();
+                magitekSettingsList = await context.MagitekSettings.Where(r => r.Job == job).ToListAsync();
             }
 
             stopWatch.Stop();
