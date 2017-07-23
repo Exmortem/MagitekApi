@@ -148,7 +148,7 @@ namespace MagitekApi.Controllers
 
             var newDiscordMessage = new DiscordMessage()
             {
-                Content = $"```diff" +
+                Content = $"```" +
                           $"New {settings.Job} Settings Were Uploaded\n" +
                           $"[Author]: {settings.Author}\n" +
                           $"[Name]: {settings.Name}\n" +
