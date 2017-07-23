@@ -13,7 +13,6 @@ namespace MagitekApi.Controllers
     public class MagitekSettingsController : Controller
     {
         #region GET
-
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -125,7 +124,6 @@ namespace MagitekApi.Controllers
         #endregion  
 
         #region POST
-
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] MagitekSettings settings)
         {
@@ -144,7 +142,6 @@ namespace MagitekApi.Controllers
 
             return new ObjectResult(new MagitekApiResult() { Name = "Success", Description = $"Success: Added New {settings.Job} Settings"});
         }
-
         #endregion
     }
 }
