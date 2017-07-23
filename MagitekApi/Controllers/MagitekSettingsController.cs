@@ -149,10 +149,10 @@ namespace MagitekApi.Controllers
             var newDiscordMessage = new DiscordMessage()
             {
                 Content = $"```csharp" +
-                          $"New **{settings.Job}** Settings Were Uploaded\n" +
-                          $"Author: {settings.Author}\n" +
-                          $"Name: {settings.Name}\n" +
-                          $"Description: {settings.Description}\n" +
+                          $"**New {settings.Job} Settings** Were Uploaded\n" +
+                          $"**Author**: {settings.Author}\n" +
+                          $"**Name**: {settings.Name}\n" +
+                          $"**Description**: {settings.Description}\n" +
                           $"``` "
             };
 
