@@ -10,10 +10,17 @@ namespace MagitekApi.Controllers
     [Route("/api/[controller]")]
     public class ContributorsController : Controller
     {
+        private const string PassKey = "dwnklqwddkwnVHWLWMZBuamdmsakOQWLkXbx";
+
         #region POST
-        [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] Contributor contributor)
+        [HttpPost("add/{password}")]
+        public async Task<IActionResult> Add([FromBody] Contributor contributor, string password)
         {
+            if (password != PassKey)
+            {
+                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "Failure: Wrong Password" });
+            }
+
             using (var context = MagitekContextFactory.Create())
             {
                 if (await context.Contributors.AnyAsync(r => r.Name == contributor.Name))
