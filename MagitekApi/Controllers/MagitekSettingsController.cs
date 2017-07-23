@@ -39,7 +39,7 @@ namespace MagitekApi.Controllers
 
             if (settings == null)
             {
-                return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = $"No Settings Of Id: {id}" });
+                return new BadRequestObjectResult(new MagitekApiResult() { Name = "Failure", Description = $"No Settings Of Id: {id}" });
             }
 
             return new OkObjectResult(settings);
@@ -131,7 +131,7 @@ namespace MagitekApi.Controllers
             {
                 if (await context.MagitekSettings.AnyAsync(r => r.Job == settings.Job && r.Name == settings.Name))
                 {
-                    return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "Failure: Duplicate Settings"});
+                    return new BadRequestObjectResult(new MagitekApiResult() { Name = "Failure", Description = "Failure: Duplicate Settings"});
                 }
 
                 Console.WriteLine($"New Settings [{settings.Job}] [{settings.Name}] From [{settings.Author}]");
