@@ -7,7 +7,7 @@ namespace MagitekApi.Models
     {
         [Key]
         public int Id { get; set; }       
-        public DateTime PostDateTime { get; set; }
+        public string Created { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
     }

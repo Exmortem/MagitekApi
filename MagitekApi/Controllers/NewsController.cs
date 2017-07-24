@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using MagitekApi.Database;
 using MagitekApi.Models;
@@ -41,7 +42,7 @@ namespace MagitekApi.Controllers
             {
                 Console.WriteLine($"New News Message [{news.Title}]");
 
-                news.PostDateTime = DateTime.Now;
+                news.Created = DateTime.Now.ToString(CultureInfo.InvariantCulture);
 
                 await context.AddAsync(news);
                 await context.SaveChangesAsync();
