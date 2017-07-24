@@ -40,6 +40,9 @@ namespace MagitekApi.Controllers
         {
             Contributor contributor;
 
+            var exists  = _redisCache.GetString(secretKey);
+            Console.WriteLine($@"Does Key Exist? {exists}");
+
             using (var context = MagitekContextFactory.Create())
             {
                 contributor = await context.Contributors.FirstOrDefaultAsync(r => r.SecretKey == secretKey);
