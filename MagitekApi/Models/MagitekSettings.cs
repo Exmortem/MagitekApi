@@ -13,5 +13,6 @@ namespace MagitekApi.Models
         public string Description { get; set; }
         public int Rating { get; set; } = 0;
         public string File { get; set; }
+        public string Created { get; set; }
     }
 }

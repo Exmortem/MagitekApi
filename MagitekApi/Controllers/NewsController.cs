@@ -42,7 +42,7 @@ namespace MagitekApi.Controllers
             {
                 Console.WriteLine($"New News Message [{news.Title}]");
 
-                news.Created = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+                news.Created = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
 
                 await context.AddAsync(news);
                 await context.SaveChangesAsync();

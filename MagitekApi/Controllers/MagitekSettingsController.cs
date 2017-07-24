@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -141,6 +142,7 @@ namespace MagitekApi.Controllers
                 }
 
                 Console.WriteLine($"New Settings [{settings.Job}] [{settings.Name}] From [{settings.Author}]");
+                settings.Created = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
 
                 await context.AddAsync(settings);
                 await context.SaveChangesAsync();
