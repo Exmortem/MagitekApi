@@ -9,8 +9,8 @@ namespace MagitekApi.Extensions
             if (bytes == null)
                 return default(T);
 
-            var bf = new BinaryConverter();     
-            return  bf.Deserialize<T>(bytes);   
+            var bf = new BinaryConverter();
+            return bf.Deserialize<T>(bytes);
         }
     }
 }

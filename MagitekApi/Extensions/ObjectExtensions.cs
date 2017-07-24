@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using BinaryFormatter;
 
 namespace MagitekApi.Extensions
 {
@@ -6,8 +7,8 @@ namespace MagitekApi.Extensions
     {
         public static byte[] GetByteArray<T>(this T thing)
         {
-            var obj = TypeDescriptor.GetConverter(thing.GetType());
-            return (byte[])obj.ConvertTo(thing, typeof(byte[]));
+            var bc = new BinaryConverter();
+            return bc.Serialize(thing);
         }
     }
 }
