@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using BinaryFormatter;
+﻿using BinaryFormatter;
 
 namespace MagitekApi.Extensions
 {
