@@ -4,7 +4,7 @@ namespace MagitekApi.Extensions
 {
     public static class ObjectExtensions
     {
-        public static byte[] GetByteArray(this object thing)
+        public static byte[] GetByteArray<T>(this T thing)
         {
             var obj = TypeDescriptor.GetConverter(thing.GetType());
             return (byte[])obj.ConvertTo(thing, typeof(byte[]));
