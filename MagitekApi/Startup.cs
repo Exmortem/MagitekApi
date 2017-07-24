@@ -25,6 +25,14 @@ namespace MagitekApi
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "MagitekApi";
+                options.Configuration = "localhost";
+            });
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +52,7 @@ namespace MagitekApi
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

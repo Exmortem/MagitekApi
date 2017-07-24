@@ -16,17 +16,17 @@ namespace MagitekApi.Controllers
     public class MagitekSettingsController : Controller
     {
         private const string DiscordWebhook = "https://discordapp.com/api/webhooks/338522123154751489/7fMEOnDCphVEuW10caQTVb5Fo6hTt-rMiAkdGr8vwwzikE5HushhFJO3QI-AM-8ifrCE";
-        private HttpClient Client = new HttpClient();
+        private readonly HttpClient _client = new HttpClient();
 
         #region GET
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             List<MagitekSettings> magitekSettingsList;
 
             using (var context = MagitekContextFactory.Create())
             {
-                magitekSettingsList = context.MagitekSettings.ToList();
+                magitekSettingsList = await context.MagitekSettings.ToListAsync();
             }
 
             return new OkObjectResult(magitekSettingsList);
@@ -153,12 +153,12 @@ namespace MagitekApi.Controllers
                           $"[Author]: {settings.Author}\n" +
                           $"[Name]: {settings.Name}\n" +
                           $"[Description]: {settings.Description}\n" +
-                          $"``` "
+                          $"```"
             };
 
             var json = JsonConvert.SerializeObject(newDiscordMessage);
             var requestContent = new StringContent(json, Encoding.UTF8, "application/json");
-            await Client.PostAsync(DiscordWebhook, requestContent);
+            await _client.PostAsync(DiscordWebhook, requestContent);
 
             return new ObjectResult(new MagitekApiResult() { Name = "Success", Description = $"Success: Added New {settings.Job} Settings"});
         }

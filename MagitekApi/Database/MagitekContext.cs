@@ -8,6 +8,7 @@ namespace MagitekApi.Database
         public MagitekContext(DbContextOptions option) : base(option) { }
         public DbSet<MagitekSettings> MagitekSettings { get; set; }
         public DbSet<Contributor> Contributors { get; set; }
+        public DbSet<News> News { get; set; }
     }
 
     public static class MagitekContextFactory
