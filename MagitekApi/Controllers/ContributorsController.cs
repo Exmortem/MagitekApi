@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
 using MagitekApi.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,21 +11,6 @@ namespace MagitekApi.Controllers
     public class ContributorsController : Controller
     {
         private const string PassKey = "dwnklqwddkwnVHWLWMZBuamdmsakOQWLkXbx";
-
-        public ContributorsController()
-        {
-            List<Contributor> contributors;
-
-            using (var context = MagitekContextFactory.Create())
-            {
-                contributors = context.Contributors.ToList();
-            }
-
-            foreach (var contributor in contributors)
-            {
-                HttpContext.Session.SetString(contributor.SecretKey, contributor.Name);
-            }
-        }
 
         #region GET
 
@@ -74,7 +56,6 @@ namespace MagitekApi.Controllers
                 await context.SaveChangesAsync();
             }
 
-            HttpContext.Session.SetString(contributor.SecretKey, contributor.Name);
             return new ObjectResult(contributor);
         }
         #endregion
