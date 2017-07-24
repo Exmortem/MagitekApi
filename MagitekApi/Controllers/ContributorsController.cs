@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
 using MagitekApi.Models;
@@ -44,7 +45,7 @@ namespace MagitekApi.Controllers
 
             using (var context = MagitekContextFactory.Create())
             {
-                if (await context.Contributors.AnyAsync(r => r.Name == contributor.Name))
+                if (context.Contributors.Any(r => r.Name == contributor.Name))
                 {
                     return new ObjectResult(new MagitekApiResult() { Name = "Failure", Description = "Failure: Duplicate Contributor" });
                 }
