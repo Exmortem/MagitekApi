@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
+using MagitekApi.Extensions;
 using MagitekApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +31,8 @@ namespace MagitekApi.Controllers
 
             foreach (var contributor in contributors)
             {
-                _redisCache.SetString(contributor.SecretKey, contributor.Name);
+                var byteArray = contributor.GetByteArray();
+                _redisCache.Set(contributor.SecretKey, byteArray);
             }
         }
 
@@ -38,22 +41,22 @@ namespace MagitekApi.Controllers
         [HttpGet("verify/{secretKey}")]
         public async Task<IActionResult> Verify(string secretKey)
         {
-            Contributor contributor;
+            var contributor = _redisCache.Get(secretKey).FromByteArray<Contributor>();
 
-            var exists  = _redisCache.GetString(secretKey);
-            Console.WriteLine($@"Does Key Exist? {exists}");
+            if (contributor != null)
+            {
+                Console.WriteLine($"Got {contributor.Name} from Redis Cache");
+                return new ObjectResult(contributor);
+            }
 
             using (var context = MagitekContextFactory.Create())
             {
                 contributor = await context.Contributors.FirstOrDefaultAsync(r => r.SecretKey == secretKey);
             }
 
-            if (contributor == null)
-            {
-                return new BadRequestObjectResult(new MagitekApiResult() { Name = "Failure", Description = $"Key Is Not Valid" });
-            }
-
-            return new ObjectResult(contributor);
+            return contributor == null ?
+                new BadRequestObjectResult(new MagitekApiResult() { Name = "Failure", Description = $"Key Is Not Valid" }) :
+                new ObjectResult(contributor);
         }
         #endregion
 
@@ -80,7 +83,8 @@ namespace MagitekApi.Controllers
                 await context.SaveChangesAsync();
             }
 
-            _redisCache.SetString(contributor.SecretKey, contributor.Name);
+            var byteArray = contributor.GetByteArray();
+            _redisCache.Set(contributor.SecretKey, byteArray);
 
             return new ObjectResult(contributor);
         }

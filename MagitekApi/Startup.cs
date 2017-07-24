@@ -29,7 +29,7 @@ namespace MagitekApi
             services.AddDistributedRedisCache(option =>
             {
                 option.Configuration = "127.0.0.1";
-                option.InstanceName = "MagitekApi";
+                option.InstanceName = "";
             });
         }
 
