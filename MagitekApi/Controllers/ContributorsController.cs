@@ -11,7 +11,7 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace MagitekApi.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("[controller]")]
     public class ContributorsController : Controller
     {
         private const string PassKey = "dwnklqwddkwnVHWLWMZBuamdmsakOQWLkXbx";

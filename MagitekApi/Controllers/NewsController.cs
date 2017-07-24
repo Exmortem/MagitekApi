@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MagitekApi.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("[controller]")]
     public class NewsController : Controller
     {
         private const string PassKey = "dwnklqwddkwndwqdwbdjlbjijnjbdja72191dsbjsacvdxwQWLkXbx";
