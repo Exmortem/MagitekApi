@@ -25,6 +25,12 @@ namespace MagitekApi
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddDistributedRedisCache(option =>
+            {
+                option.Configuration = "127.0.0.1";
+                option.InstanceName = "MagitekApi";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

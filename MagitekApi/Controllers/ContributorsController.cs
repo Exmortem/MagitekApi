@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
 using MagitekApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace MagitekApi.Controllers
 {
@@ -11,6 +14,24 @@ namespace MagitekApi.Controllers
     public class ContributorsController : Controller
     {
         private const string PassKey = "dwnklqwddkwnVHWLWMZBuamdmsakOQWLkXbx";
+        private readonly IDistributedCache _redisCache;
+
+        public ContributorsController(IDistributedCache redisCache)
+        {
+            _redisCache = redisCache;
+
+            List<Contributor> contributors;
+
+            using (var context = MagitekContextFactory.Create())
+            {
+                contributors = context.Contributors.ToList();
+            }
+
+            foreach (var contributor in contributors)
+            {
+                _redisCache.SetString(contributor.SecretKey, contributor.Name);
+            }
+        }
 
         #region GET
 
@@ -55,6 +76,8 @@ namespace MagitekApi.Controllers
                 await context.AddAsync(contributor);
                 await context.SaveChangesAsync();
             }
+
+            _redisCache.SetString(contributor.SecretKey, contributor.Name);
 
             return new ObjectResult(contributor);
         }
