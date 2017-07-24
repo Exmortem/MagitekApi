@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MagitekApi.Models
 {
@@ -10,5 +9,6 @@ namespace MagitekApi.Models
         public string Created { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
+        public string Subject { get; set; }
     }
 }
