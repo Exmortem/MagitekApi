@@ -41,6 +41,8 @@ namespace MagitekApi.Controllers
             {
                 Console.WriteLine($"New News Message [{news.Title}]");
 
+                news.PostDateTime = DateTime.Now;
+
                 await context.AddAsync(news);
                 await context.SaveChangesAsync();
             }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using MagitekApi.Database;
@@ -37,7 +36,6 @@ namespace MagitekApi.Controllers
         }
 
         #region GET
-
         [HttpGet("verify/{secretKey}")]
         public async Task<IActionResult> Verify(string secretKey)
         {
