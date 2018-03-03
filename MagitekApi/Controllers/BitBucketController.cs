@@ -16,7 +16,7 @@ namespace MagitekApi.Controllers
             _redisCache = redisCache;
         }
 
-        [HttpGet("")]
+        [HttpPost("")]
         public async Task<IActionResult> GetAllBosses([FromBody] string message)
         {
             Console.WriteLine(message);
