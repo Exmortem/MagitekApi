@@ -9,17 +9,15 @@ namespace MagitekApi.Controllers
     [Route("[controller]")]
     public class BitBucketController : Controller
     {
-        private readonly IDistributedCache _redisCache;
-
         public BitBucketController(IDistributedCache redisCache)
         {
-            _redisCache = redisCache;
+
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> GetAllBosses([FromBody] string message)
+        public async Task<IActionResult> ReceiveMessage([FromBody] BitBucketMessage message)
         {
-            Console.WriteLine(message);
+            Console.WriteLine($@"{message.DisplayName} Commited: {message.Commit}");
             return new OkResult();
         }
     }

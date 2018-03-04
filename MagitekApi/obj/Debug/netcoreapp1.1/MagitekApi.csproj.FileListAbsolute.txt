@@ -7,3 +7,5 @@ C:\MagitekApi\MagitekApi\obj\Debug\netcoreapp1.1\MagitekApi.AssemblyInfo.cs
 C:\MagitekApi\MagitekApi\bin\Debug\netcoreapp1.1\MagitekApi.pdb
 C:\MagitekApi\MagitekApi\obj\Debug\netcoreapp1.1\MagitekApi.dll
 C:\MagitekApi\MagitekApi\obj\Debug\netcoreapp1.1\MagitekApi.pdb
+C:\MagitekApi\MagitekApi\obj\Debug\netcoreapp1.1\MagitekApi.csproj.CoreCompileInputs.cache
+C:\MagitekApi\MagitekApi\obj\Debug\netcoreapp1.1\MagitekApi.AssemblyInfoInputs.cache
