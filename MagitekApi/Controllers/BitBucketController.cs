@@ -17,7 +17,7 @@ namespace MagitekApi.Controllers
         [HttpPost("")]
         public async Task<IActionResult> ReceiveMessage([FromBody] BitBucketMessage message)
         {
-            Console.WriteLine($@"{message.DisplayName} Commited: {message.Commit}");
+            Console.WriteLine($@"{message.actor.username} : {message.push.changes}");
             return new OkResult();
         }
     }
