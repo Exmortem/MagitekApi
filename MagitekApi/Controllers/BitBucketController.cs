@@ -28,7 +28,7 @@ namespace MagitekApi.Controllers
             var newDiscordMessage = new DiscordMessage()
             {
                 Content = $"```diff\n" +
-                          $"New Commit\n" +
+                          $"New Commit To Bit Bucket\n" +
                           $"[Author]: {message.actor.username}\n" +
                           $"[Description]: {message.push.changes[0].commits[0].message}\n" +
                           $"```"
