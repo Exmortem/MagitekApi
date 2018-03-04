@@ -27,7 +27,11 @@ namespace MagitekApi.Controllers
 
             var newDiscordMessage = new DiscordMessage()
             {
-                Content = $@"{message.actor.display_name} : {message.push.changes[0]}"
+                Content = $"```diff\n" +
+                          $"New Commit\n" +
+                          $"[Author]: {message.actor.username}\n" +
+                          $"[Description]: {message.push.changes[0].commits[0].message}\n" +
+                          $"```"
             };
 
             var json = JsonConvert.SerializeObject(newDiscordMessage);
