@@ -286,3 +286,15 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+MagitekApi/obj/Debug/netcoreapp1\.1/MagitekApi\.AssemblyInfoInputs\.cache
+
+MagitekApi/obj/Debug/netcoreapp1\.1/MagitekApi\.csproj\.CoreCompileInputs\.cache
+
+MagitekApi/obj/Debug/netcoreapp1\.1/MagitekApi\.csprojResolveAssemblyReference\.cache
+
+MagitekApi/obj/Debug/netcoreapp1\.1/MagitekApi\.dll
+
+MagitekApi/obj/MagitekApi\.csproj\.nuget\.cache
+
+MagitekApi/obj/MagitekApi\.csproj\.nuget\.g\.props

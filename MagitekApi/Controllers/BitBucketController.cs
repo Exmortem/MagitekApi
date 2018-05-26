@@ -15,10 +15,7 @@ namespace MagitekApi.Controllers
         private const string DiscordWebhook = "https://discordapp.com/api/webhooks/409798949113954304/QS2UdRnwqmV8Gf3HJbqh3UudF8pMw9BnMzANSoRcj6huMZHtaLbeGDPIexITelEpFT2G";
         private readonly HttpClient _client = new HttpClient();
 
-        public BitBucketController(IDistributedCache redisCache)
-        {
-
-        }
+        public BitBucketController(IDistributedCache redisCache) { }
 
         [HttpPost("")]
         public async Task<IActionResult> ReceiveMessage([FromBody] BitBucketMessage message)
