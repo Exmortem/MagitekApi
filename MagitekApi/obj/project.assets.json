@@ -14283,6 +14283,7 @@
           }
         },
         "imports": [
+          "portable-net45+win8+wp8+wpa81",
           "net461"
         ],
         "assetTargetFallback": true,

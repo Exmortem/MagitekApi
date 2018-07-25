@@ -5,9 +5,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
   </PropertyGroup>
   <ItemGroup>
+    
     <PackageReference Include="BinaryFormatter" Version="2.1.4" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
