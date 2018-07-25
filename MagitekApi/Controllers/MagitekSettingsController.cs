@@ -147,7 +147,7 @@ namespace MagitekApi.Controllers
                 await context.AddAsync(settings);
                 await context.SaveChangesAsync();
             }
-
+            
             var newDiscordMessage = new DiscordMessage()
             {
                 Content = $"```diff\n" +

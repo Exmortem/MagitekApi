@@ -9,6 +9,7 @@ namespace MagitekApi.Database
         public DbSet<MagitekSettings> MagitekSettings { get; set; }
         public DbSet<Contributor> Contributors { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<SharedGambit> SharedGambits { get; set; }
     }
 
     public static class MagitekContextFactory
