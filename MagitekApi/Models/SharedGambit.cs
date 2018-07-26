@@ -14,5 +14,7 @@ namespace MagitekApi.Models
         public bool IsGambitGroup { get; set; }
         public string File { get; set; }
         public string Created { get; set; }
+        public string PosterId { get; set; }
+        public int NumberOfGambits { get; set; }
     }
 }
