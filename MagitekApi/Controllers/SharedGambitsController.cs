@@ -85,7 +85,7 @@ namespace MagitekApi.Controllers
                     return new BadRequestObjectResult(new MagitekApiResult() { Name = "Failure", Description = "Failure: Duplicate Gambit Id" });
                 }
 
-                Console.WriteLine($"New Shared Gambits for the [{sharedGambit.Job}] : [{sharedGambit.Name}] From [{sharedGambit.Author}]");
+                Console.WriteLine($"New Shared Gambits for the [{sharedGambit.Job}] : [{sharedGambit.Name}]");
                 sharedGambit.Created = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
 
                 await context.AddAsync(sharedGambit);
@@ -96,7 +96,6 @@ namespace MagitekApi.Controllers
             {
                 Content = $"```diff\n" +
                           $"New {sharedGambit.Job} Gambit(s) Were Uploaded\n" +
-                          $"[Author]: {sharedGambit.Author}\n" +
                           $"[Name]: {sharedGambit.Name}\n" +
                           $"[Description]: {sharedGambit.Description}\n" +
                           $"```"
