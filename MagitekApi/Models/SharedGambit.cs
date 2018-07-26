@@ -16,5 +16,6 @@ namespace MagitekApi.Models
         public string Created { get; set; }
         public string PosterId { get; set; }
         public int NumberOfGambits { get; set; }
+        public string Zone { get; set; }
     }
 }
