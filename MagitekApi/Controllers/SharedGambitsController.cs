@@ -99,6 +99,7 @@ namespace MagitekApi.Controllers
                 Content = $"```diff\n" +
                           $"New {sharedGambit.Job} Gambit(s) Were Uploaded\n" +
                           $"[Name]: {sharedGambit.Name}\n" +
+                          $"[Job]: {sharedGambit.Job}\n" +
                           $"[Description]: {sharedGambit.Description}\n" +
                           $"```"
             };
