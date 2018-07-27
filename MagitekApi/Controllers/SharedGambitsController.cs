@@ -67,7 +67,7 @@ namespace MagitekApi.Controllers
                     return new ObjectResult(new MagitekApiResult { Name = "Failure", Description = "Failure: Gambit Cannot Be Found" });
 
                 context.SharedGambits.Remove(sharedGambit);
-                return new ObjectResult(new MagitekApiResult { Name = "Success", Description = $"Success: Removed Gambit Id: {sharedGambit.Id} - Name: {sharedGambit.Name}" });
+                return new OkObjectResult(new MagitekApiResult { Name = "Success", Description = $"Success: Removed Gambit Id: {sharedGambit.Id} - Name: {sharedGambit.Name}" });
             }
         }
 
