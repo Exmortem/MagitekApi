@@ -54,14 +54,14 @@ namespace MagitekApi.Controllers
         }
 
         [HttpGet]
-        [Route("remove/{gambitId}")]
-        public async Task<IActionResult> RemoveByPosterId(int gambitId)
+        [Route("remove/{gambitId}/{posterId}")]
+        public async Task<IActionResult> RemoveByPosterId(int gambitId, string posterId)
         {
             SharedGambit sharedGambit;
 
             using (var context = MagitekContextFactory.Create())
             {
-                sharedGambit = await context.SharedGambits.FirstOrDefaultAsync(r => r.Id == gambitId);
+                sharedGambit = await context.SharedGambits.FirstOrDefaultAsync(r => r.Id == gambitId && r.PosterId == posterId);
 
                 if (sharedGambit == null)
                     return new ObjectResult(new MagitekApiResult { Name = "Failure", Description = "Failure: Gambit Cannot Be Found" });
