@@ -10,6 +10,7 @@ namespace MagitekApi.Database
         public DbSet<Contributor> Contributors { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<SharedGambit> SharedGambits { get; set; }
+        public DbSet<SharedOpener> SharedOpeners { get; set; }
     }
 
     public static class MagitekContextFactory
