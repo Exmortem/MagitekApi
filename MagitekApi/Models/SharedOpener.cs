@@ -15,5 +15,6 @@ namespace MagitekApi.Models
         public string PosterId { get; set; }
         public int NumberOfActions { get; set; }
         public string Zone { get; set; }
+        public bool OnlyUseOncePerCombat { get; set; }
     }
 }
