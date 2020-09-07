@@ -18,7 +18,9 @@ namespace MagitekApi.Database
         public static MagitekContext Create()
         {
             var optionsBuilder = new DbContextOptionsBuilder<MagitekContext>();
-            optionsBuilder.UseMySql("server=localhost;port=3306;database=Magitek;user=root;password=Fester79934");
+            
+            // MySql connection string
+            optionsBuilder.UseMySql("");
 
             var context = new MagitekContext(optionsBuilder.Options);
             context.Database.EnsureCreated();
