@@ -28,7 +28,8 @@ namespace MagitekApi
 
             services.AddDistributedRedisCache(option =>
             {
-                option.Configuration = "127.0.0.1,password=Fester79934";
+                // Redis connection string
+                option.Configuration = "";
                 
                 option.InstanceName = "";
             });
