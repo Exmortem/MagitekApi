@@ -12,7 +12,8 @@ namespace MagitekApi.Controllers
     [Route("[controller]")]
     public class BitBucketController : Controller
     {
-        private const string DiscordWebhook = "https://discordapp.com/api/webhooks/409798949113954304/QS2UdRnwqmV8Gf3HJbqh3UudF8pMw9BnMzANSoRcj6huMZHtaLbeGDPIexITelEpFT2G";
+        // Discord webhook 
+        private const string DiscordWebhook = "";
         private readonly HttpClient _client = new HttpClient();
 
         public BitBucketController(IDistributedCache redisCache) { }
