@@ -14,7 +14,8 @@ namespace MagitekApi.Controllers
     [Route("[controller]")]
     public class ContributorsController : Controller
     {
-        private const string PassKey = "dwnklqwddkwnVHWLWMZBuamdmsakOQWLkXbx";
+        // random pass key
+        private const string PassKey = "";
         private readonly IDistributedCache _redisCache;
 
         public ContributorsController(IDistributedCache redisCache)
