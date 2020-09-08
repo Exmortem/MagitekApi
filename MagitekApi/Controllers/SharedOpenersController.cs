@@ -16,7 +16,8 @@ namespace MagitekApi.Controllers
     [Route("[controller]")]
     public class SharedOpenersController
     {
-        private const string DiscordWebhook = "https://discordapp.com/api/webhooks/338522123154751489/7fMEOnDCphVEuW10caQTVb5Fo6hTt-rMiAkdGr8vwwzikE5HushhFJO3QI-AM-8ifrCE";
+        // Discord webhook
+        private const string DiscordWebhook = "";
         private readonly HttpClient _client = new HttpClient();
 
         #region Get
