@@ -12,7 +12,8 @@ namespace MagitekApi.Controllers
     [Route("[controller]")]
     public class NewsController : Controller
     {
-        private const string PassKey = "dwnklqwddkwndwqdwbdjlbjijnjbdja72191dsbjsacvdxwQWLkXbx";
+        // random passkey
+        private const string PassKey = "";
 
         #region GET
         [HttpGet]
